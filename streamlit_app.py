@@ -2,7 +2,10 @@ import streamlit as st
 import pandas as pd
 import os
 from openai import AzureOpenAI
-import time
+
+# cred
+from dotenv import load_dotenv, find_dotenv
+_ = load_dotenv(find_dotenv()) # read local .env file
 
 client = AzureOpenAI(
     api_version="2024-02-15-preview",
@@ -17,13 +20,9 @@ def upload_file():
         # Save the uploaded file name in the session state
         st.session_state.filename = uploaded_file.name
         
-        # Saving the file to disk (optional, depending on your use case)
-        with open(os.path.join("documents", uploaded_file.name), "wb") as f:
-            f.write(uploaded_file.getbuffer())
-        
         # Load the uploaded CSV into a DataFrame directly
         df = pd.read_csv(uploaded_file)
-        
+
         # Perform operations with df here (e.g., display the DataFrame or its summary)
         st.write(df)  # This line is an example to display the DataFrame in Streamlit
         
@@ -50,7 +49,11 @@ def get_mapping(m_columns: list, target_columns: list) -> dict:
     if min([len(m_columns), len(target_columns)]) != len(column_mapping):
         print(f'length of machine: {len(m_columns)}, length of target columns: {len(target_columns)}, length of mapping: {len(column_mapping)}')
 
-    return column_mapping
+    missing_columns = set(target_columns).difference(set(column_mapping.keys()))
+
+    return column_mapping, missing_columns
+
+column_pre_ren = None
 
 def start_mapping():
     st.write("start mapping")
@@ -58,13 +61,38 @@ def start_mapping():
     with open("data_model.json") as f:
         target_frame = json.load(f)
     target_columns = list(target_frame['properties'].keys())
-    rst = get_mapping(list(uploaded_df.columns), target_columns)
+    column_pre_ren, col_massing = get_mapping(list(uploaded_df.columns), target_columns)
+    st.title("Column Present or renamed")
+    st.write(column_pre_ren)
+    st.title("Column Missing")
+    st.write(col_massing)
+    return column_pre_ren
+
+def analyse_data(df: pd.DataFrame, col_mapping: dict):
+    # count how many missing values in each column
+    st.title("Missing Values")
+    for col in df.columns:
+        nan = df[col].isna().sum()
+        st.write(f"{col}: {nan}")
+    # st.write(df.isna().sum())
+    st.title("Missing rows")
+    st.title("Change of units")
     
+
 # Call the upload_file function in your Streamlit app
 uploaded_df = upload_file()
-
+col_map = None
 if st.button("Map"):
-    start_mapping()
+    import time
+    start_time = time.time()
+    col_map = start_mapping()
+    st.progress((time.time() - start_time)/60, text=f"Time taken: {round(time.time() - start_time)} seconds")
 
+if st.button("Analyse Data"):
+    st.write("Analyse Missing rows, values and column order")
+    analyse_data(uploaded_df, col_map)
 
-
+if st.button("Using Agent"):
+    with open("agent.txt") as f:
+        agent = f.read()
+        st.write(agent)

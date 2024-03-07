@@ -1,0 +1,224 @@
+{
+    "$id": "https://example.com/person.schema.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Machine produced measurements during refinement of Silica Ore",
+    "description": "Machine logs from silica refiners.",
+    "type": "object",
+    "properties": {
+
+        "date": {
+            "title":"date",
+            "format":"date-time",
+            "type": "string",
+            "unit": "YYYY-MM-DD hh:mm:ss",
+            "unit_description":"date and time in form year-month-day hours:minutes:seconds",
+            "description": "The date and time of the logs. The measurements should be in 20 second intervals."
+            },
+        "%_Iron_Feed": {
+            "title":"Percentage Iron Feed",
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "unit": "%",
+            "unit_description":"percentage",
+            "description": "Usually between 40 and 70% avg. around 56.3. This is the starting percentage of iron in the mix before the process starts. The same measurement is taken again at the end and recorded in the variable: %_Iron_Concentrate."
+            },
+        "%_Silica_Feed": {
+            "title":"Percentage Silica Feed",
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "unit": "%",
+            "unit_description":"percentage",
+            "description": "Usually between  and 35% avg. around 14.65. This is the starting percentage of silica in the mix before the process starts. The same measurement is taken again at the end and recorded in the variable: %_Silica_Concentrate."
+            },
+        "Starch_Flow": {
+            "minimum": 0,
+            "maximum": 7000,
+            "unit":"m3/h",
+            "unit_description":" cubic meters per hour",
+            "description": "Starch comes into the mix in order to help purify the ore. This column indicates the current flow of starch into the mix. It should be usually about in average 3000. Columns 4 until 8 have the highest impact in the outcome of the machine and should be monitored closely."
+            },
+        "Amina_Flow": {
+            "title":"Amina Flow",
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1000,
+            "unit":"m3/h",
+            "unit_description":" cubic meters per hour",
+            "description": "Amina comes into the mix in order to help purify the ore. This column indicates the current flow of amina into the mix it should be around 500 and not usually lower than 200. Columns 4 until 8 have the highest impact in the outcome of the machine and should be monitored closely."
+            },
+        "Ore_Pulp_Flow": {
+            "title":"Ore Pulp Flow",
+            "type": "number",
+            "minimum": 300,
+            "maximum": 500,
+            "unit":"t/h",
+            "unit_description":"tones per hour",
+            "description": "The pulp of the ore is introduced into the mix and through the process, the mineral goes from the pulp form into a concentrate state of the desired purified mineral. This is never zero, and it has a small range, between 350-450.  its flow has a high impact on Columns 4 until 8 have the highest impact in the outcome of the machine and should be monitored closely."
+            },
+        "Ore_Pulp_pH": {
+            "title":"Ore Pulp pH",
+            "type": "number",
+            "minimum": 0,
+            "maximum": 14,
+            "unit": "pH",
+            "unit_description":"logarithmic units",
+            "description": "Tells us the pH of the ore pulp during the process. This is important as it should be an alcaline process, more specifically, it should stay between 7 and 11, although usually between 8 and 10, with an avg. of 9.77. The liquid solution is used to separate hydrophobic particles and help create the concentrate. Columns 4 until 8 have the highest impact in the outcome of the machine and should be monitored closely."
+            },
+        "Ore_Pulp_Density": {
+            "title":"Ore Pulp Density",
+            "type": "number",
+            "minimum": 1,
+            "maximum": 2,
+            "unit":"kg/cm³",
+            "unit_description":"kilograms per cubic centimeters",
+            "description": " The density is constantly measured to check the stage of the process and therefore of the pulp/conentrate.Columns 4 until 8 have the highest impact in the outcome of the machine and should be monitored closely."
+            },
+        "Flotation_Column_01_Air_Flow": {
+            "title":"Flotation Air Flow: Column 1",
+            "type": "number",
+            "minimum": 0,
+            "maximum": 500,
+            "unit":"Nm³/h",
+            "unit_description":"Normal cubic meters per hour",
+            "description": "Measures airflow in column number 1, should be between 250 and 350 but mostly below 300, usually all airflow columns will have similar values simultaneously, airflow shouldnt be zero during production, as airflow is needed as part of the refinement process. From column 9 until column 22, we can see process data (level and air flow inside the flotation columns, which also impact in ore quality. "
+            },
+        "Flotation_Column_02_Air_Flow": {
+            "title":"Flotation Air Flow: Column 2",
+            "type": "number",
+            "minimum": 0,
+            "maximum": 500,
+            "unit":"Nm³/h",
+            "unit_description":"Normal cubic meters per hour",
+            "description": "Measures airflow in column number 2, should be between 250 and 350 but mostly below 300, usually all airflow columns will have similar values simultaneously, airflow shouldnt be zero during production, as airflow is needed as part of the refinement process. From column 9 until column 22, we can see process data (level and air flow inside the flotation columns, which also impact in ore quality. "
+            },
+        "Flotation_Column_03_Air_Flow": {
+            "title":"Flotation Air Flow: Column 3",
+            "type": "number",
+            "minimum": 0,
+            "maximum": 500,
+            "unit":"Nm³/h",
+            "unit_description":"Normal cubic meters per hour",
+            "description": "Measures airflow in column number 3, should be between 250 and 350 but mostly below 300, usually all airflow columns will have similar values simultaneously, airflow shouldnt be zero during production, as airflow is needed as part of the refinement process. From column 9 until column 22, we can see process data (level and air flow inside the flotation columns, which also impact in ore quality. "
+            },
+        "Flotation_Column_04_Air_Flow": {
+            "title":"Flotation Air Flow: Column 4",
+            "type": "number",
+            "minimum": 0,
+            "maximum": 500,
+            "unit":"Nm³/h",
+            "unit_description":"Normal cubic meters per hour",
+            "description": "Measures airflow in column number 4, should be between 250 and 350 but mostly below 300, usually all airflow columns will have similar values simultaneously, airflow shouldnt be zero during production, as airflow is needed as part of the refinement process. From column 9 until column 22, we can see process data (level and air flow inside the flotation columns, which also impact in ore quality. "
+            },
+        "Flotation_Column_05_Air_Flow": {
+            "title":"Flotation Air Flow: Column 5",
+            "type": "number",
+            "minimum": 0,
+            "maximum": 500,
+            "unit":"Nm³/h",
+            "unit_description":"Normal cubic meters per hour",
+            "description": "Measures airflow in column number 5, should be between 250 and 350 but mostly below 300, usually all airflow columns will have similar values simultaneously, airflow shouldnt be zero during production, as airflow is needed as part of the refinement process. From column 9 until column 22, we can see process data (level and air flow inside the flotation columns, which also impact in ore quality. "
+            },
+        "Flotation_Column_06_Air_Flow": {
+            "title":"Flotation Air Flow: Column 6",
+            "type": "number",
+            "minimum": 0,
+            "maximum": 500,
+            "unit":"Nm³/h",
+            "unit_description":"Normal cubic meters per hour",
+            "description": "Measures airflow in column number 6, should be between 250 and 350 but mostly below 300, usually all airflow columns will have similar values simultaneously, airflow shouldnt be zero during production, as airflow is needed as part of the refinement process. From column 9 until column 22, we can see process data (level and air flow inside the flotation columns, which also impact in ore quality. "
+            },
+        "Flotation_Column_07_Air_Flow": {
+            "title":"Flotation Air Flow: Column 7",
+            "type": "number",
+            "minimum": 0,
+            "maximum": 500,
+            "unit":"Nm³/h",
+            "unit_description":"Normal cubic meters per hour",
+            "description": "Measures airflow in column number 7, should be between 250 and 350 but mostly below 300, usually all airflow columns will have similar values simultaneously, airflow shouldnt be zero during production, as airflow is needed as part of the refinement process. From column 9 until column 22, we can see process data (level and air flow inside the flotation columns, which also impact in ore quality. "
+            },
+        "Flotation_Column_01_Level": {
+            "title":"Flotation Level: Column 1",
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1000,
+            "unit":"mm",
+            "unit_description":"millimeters",
+            "description": "Measures level in column number 1, usually between 400 and 500. From column 9 until column 22, we can see process data (level and air flow inside the flotation columns, which also impact in ore quality. "
+            },
+        "Flotation_Column_02_Level": {
+            "title":"Flotation Level: Column 2",
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1000,
+            "unit":"mm",
+            "unit_description":"millimeters",
+            "description": "Measures level in column number 2, usually between 400 and 500. From column 9 until column 22, we can see process data (level and air flow inside the flotation columns, which also impact in ore quality. "
+            },
+        "Flotation_Column_03_Level": {
+            "title":"Flotation Level: Column 3",
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1000,
+            "unit":"mm",
+            "unit_description":"millimeters",
+            "description": "Measures level in column number 3, usually between 400 and 500. From column 9 until column 22, we can see process data (level and air flow inside the flotation columns, which also impact in ore quality. "
+            },
+        "Flotation_Column_04_Level": {
+            "title":"Flotation Level: Column 4",
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1000,
+            "unit":"mm",
+            "unit_description":"millimeters",
+            "description": "Measures level in column number 4, usually between 400 and 500. From column 9 until column 22, we can see process data (level and air flow inside the flotation columns, which also impact in ore quality. "
+            },
+        "Flotation_Column_05_Level": {
+            "title":"Flotation Level: Column 5",
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1000,
+            "unit":"mm",
+            "unit_description":"millimeters",
+            "description": "Measures level in column number 5, usually between 400 and 500. From column 9 until column 22, we can see process data (level and air flow inside the flotation columns, which also impact in ore quality. "
+            },
+        "Flotation_Column_06_Level": {
+            "title":"Flotation Level: Column 6",
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1000,
+            "unit":"mm",
+            "unit_description":"millimeters",
+            "description": "Measures level in column number 6, usually between 400 and 500. From column 9 until column 22, we can see process data (level and air flow inside the flotation columns, which also impact in ore quality. "
+            },
+         "Flotation_Column_07_Level": {
+            "title":"Flotation Level: Column 7",
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1000,
+            "unit":"mm",
+            "unit_description":"millimeters",
+            "description": "Measures level in column number 7, usually between 400 and 500. From column 9 until column 22, we can see process data (level and air flow inside the flotation columns, which also impact in ore quality. "
+            },
+         "%_Iron_Concentrate": {
+            "title":"Percentage Iron Concentrate",
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "unit": "%",
+            "unit_description":"percentage",
+            "description": "Usually between 60-70% it is an output of the process, the average should be about 65. This is measured afterwards and only every 2 hours, so there are repeated values."
+            },
+         "%_Silica_Concentrate": {
+            "title":"Percentage Silica Concentrate",
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "unit": "%",
+            "unit_description":"percentage",
+            "description": "This is measured afterwards and only every 2 hours, so there are repeated values. Percentage of Silica concentrate, it is usually quite low, between 0 and 6% the average should be about 2%. "
+            }
+
+    }
+}
