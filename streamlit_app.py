@@ -23,5 +23,5 @@ def upload_file():
 # Call the upload_file function in your Streamlit app
 uploaded_df = upload_file()
 
-# Now, uploaded_df contains the DataFrame loaded from the uploaded CSV file,
-# and you can use it for further data analysis or visualization in your Streamlit app.
+
+
