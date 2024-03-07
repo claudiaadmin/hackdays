@@ -13,3 +13,6 @@ def upload_file():
         st.session_state.filename = uploaded_file.name
         with open(os.path.join("documents", uploaded_file.name), "wb") as f:
             f.write(uploaded_file.getbuffer())
+
+
+upload_file()
